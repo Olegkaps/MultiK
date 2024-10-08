@@ -1,1 +1,3 @@
-input/*.txt
+results/
+test/
+.vscode/
