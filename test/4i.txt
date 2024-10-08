@@ -1,0 +1,21 @@
+Number of bins: 7
+Length of a single bin: 100000
+chr01	5	chr01	4	6
+chr10	3	chr10	5	7
+chr05	0	chr05	0	8
+chr02 	4  	chr02 	6  	7
+chr04	1  	chr04	2  	9
+chr05	5	chr05	3	8
+chr09	0	chr09	2	10
+chr06	6	chr06	6	9
+chr03	4	chr03	5	6
+chr08	1	chr08	2	8
+chr10	5	chr10	6	9
+chr06	2	chr06	1	6
+chr02	4	chr02	3	8
+chr04	3	chr04	2	8
+chr09	3	chr09	4	6
+chr05	1	chr05	1	9
+chr01	0	chr01	1	6
+chr06	6	chr06	5	7
+chr03 	3  	chr03 	0  	4

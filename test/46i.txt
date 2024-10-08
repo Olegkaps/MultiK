@@ -1,0 +1,12 @@
+Number of bins: 6
+Length of a single bin: 100000
+chr2	1	chr2	4	7
+chr20	4	chr21	1	9
+chr4	5	chr1	4	17
+chr22 	1  	chr21 	0  	3
+chr3	0  	chr5	4  	11
+chr8	3	chr18	2	5
+chr17	3	chr17	5	3
+chr14	2	chr14	3	7
+chr16	5	chr2	2	14
+chr7	4	chr7	5	8
