@@ -106,19 +106,6 @@ class RNA_Writer(Writer):
         uniUpList = next(uni_gen)
         uniDownList = next(uni_gen)
 
-        #upUni = open(self.upUni, "w")
-        #print(f"Number of bins: {MaxOfBins}", file=upUni)
-        #print(f"Length of a single bin: {BinLength}", file=upUni)
-        #for binPair in uniUpList:
-            #print(*binPair, sep="\t", file=upUni)
-        #upUni.close()
-        #downUni = open(self.downUni, "w")
-        #print(f"Number of bins: {MaxOfBins}", file=downUni)
-        #print(f"Length of a single bin: {BinLength}", file=downUni)
-        #for binPair in uniDownList:
-            #print(*binPair, sep="\t", file=downUni)
-        #downUni.close()
-        # frag files needed
 
         # s6_files
         mul_gen = collecter.give_data_to_em()
