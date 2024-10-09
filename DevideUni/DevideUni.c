@@ -44,9 +44,9 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    xfree(input);
-    xfree(down);
-    xfree(up);
+    fclose(input);
+    fclose(down);
+    fclose(up);
 
     printf("Done.\n");
 

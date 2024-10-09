@@ -14,12 +14,19 @@ DATA read_spline_prior(DATA data)
     data.spline.distances = xmalloc(data.spline.splineLength * sizeof(var));
     data.spline.probs = xmalloc(data.spline.splineLength * sizeof(data.spline.probs));
     float prob; 
-    for(int i = 0; i < data.spline.splineLength; i++)
+    var i = 0;
+    while(!feof(splineFile))
     {
-        xscanf(2, splineFile, "%u\t%f\n", &data.spline.distances[i], &prob);
+        xscanf(2, splineFile, "%f\t%f\n", &data.spline.distances[i], &prob);
         data.spline.probs[i] = prob;
         data.spline.interProb = MIN(data.spline.interProb, prob);
+        i++;
+        if(i >= data.spline.splineLength) {
+           break;
+        }
     }
+
+    data.spline.splineLength = i;
     fclose(splineFile);
     printf("inter prob %f\n", data.spline.interProb);
 

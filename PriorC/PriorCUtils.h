@@ -1,38 +1,10 @@
-//from StackOverflow
-void free2d(size_t x, void *matrix) {
-    if(!matrix) return;
 
-    void **m = matrix;
-    for(int i = 0; i < x; i++) {
-        if(m[i]) xfree(m[i]);
-    }
-    xfree(m);
+extern void free2d(size_t x, void *matrix);
 
-    return;
-}
+extern var** calloc2d(size_t x, size_t y, size_t elem_size);
 
-var** calloc2d(size_t x, size_t y, size_t elem_size) {
-    var **p = xcalloc(x, sizeof(var*));
+extern void memset2d_v(var** array, size_t x, int number, var end);
 
-    for(int i = 0; i < x; i++) {
-        p[i] = xcalloc(y, elem_size);
-    }
+extern void memset2d_f(float** array, size_t x, int number, var end);
 
-    return (var**)p;
-}
-
-void memset2d_v(var** array, size_t x, int number, var end)
-{
-    for(var i = 0; i < x; i++)
-    {
-        memset(array[i], number, end * sizeof(var));
-    }
-}
-
-void memset2d_f(float** array, size_t x, int number, var end)
-{
-    for(var i = 0; i < x; i++)
-    {
-        memset(array[i], number, end * sizeof(float));
-    }
-}
+#define xfree2d(X, M) {free2d(X, M); M=NULL;}

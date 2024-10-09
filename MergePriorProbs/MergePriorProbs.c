@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
     data.y = xmalloc(args.binCount * sizeof(float));
 
     data = readSplines(data, args);
+    args = data.args;
 
     writeSpline(data, args);
 

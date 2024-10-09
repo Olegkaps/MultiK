@@ -12,31 +12,31 @@
 #include <sys/stat.h>
 
 
-#include "../Utils/MyTypes.h"
-#include "../Utils/MyUtils.h"
+#include "MyTypes.h"
+#include "MyUtils.h"
 #include "PriorCTypes.h"
 #include "PriorCUtils.h"
 #include "PriorCInteractions.h"
 #include "PriorCProbs.h"
 #include "PriorCReading.h"
 #include "PriorCArgumentParcing.h"
+#include "spline_connector.h"
+
+//FILE* logfile;
 
 
-FILE* logfile;
-
-
-float* splineX;
-float* splineXinit;
-float* splineY;
-float* splineYinit;
+double* splineX;
+double* splineXinit;
+double* splineY;
+double* splineYinit;
 var residual;
 var* outliers;
 var* outliersdist;
 size_t outliersdistLength;
-float* FDRX;
-float* FDRXinit;
-float* FDRY; 
-float* FDRYinit; 
+double* FDRX;
+double* FDRXinit;
+double* FDRY; 
+double* FDRYinit; 
 
 
 int main(int argc, char *argv[])
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     nums.distLowThres = args.distLowThres;
     nums.noOfFrags = args.noOfFrags;
 
-    float distScaling = 1000000.0 / nums.binLength;
+    double distScaling = 1000000.0 / nums.binLength;
     if(nums.binCount <= (nums.distUpThres - nums.distLowThres))
     {
         nums.mainDicSize = nums.binCount - nums.distLowThres;
@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
     nums = res.nums;
 
 
-    float* x = xcalloc(nums.noOfBins, sizeof(float));
-    float* y = xcalloc(nums.noOfBins, sizeof(float));
+    double* x = xcalloc(nums.noOfBins, sizeof(double));
+    double* y = xcalloc(nums.noOfBins, sizeof(double));
 
 
-    float** probTuple = xmalloc(2 * sizeof(float*));
+    double** probTuple = xmalloc(2 * sizeof(double*));
     probTuple[0] = x;
     probTuple[1] = y;
     //probTuple[2] = yerr;
@@ -118,9 +118,9 @@ int main(int argc, char *argv[])
 
     write_spline(args, splineX, splineY, nums);
 
-    free(mainDic);
-    free2d(nums.noOfBins, binStats);
-    free2d(2, probTuple);
-    fclose(logfile);
+    xfree(mainDic);
+    xfree2d(nums.noOfBins, binStats);
+    xfree2d(2, probTuple);
+    //fclose(logfile);
     return 0;
 }
