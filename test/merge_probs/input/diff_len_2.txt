@@ -1,0 +1,2 @@
+Bin Length: 50000
+Num of Bins: 50
