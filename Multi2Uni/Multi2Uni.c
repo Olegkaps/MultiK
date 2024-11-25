@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
     data = read_spline_prior(data);
 
     CSR matrix;
+    
 
     FILE* multiFile = xopen(data.pathes.multiPath, "r");
     //var readsNum, binPairsNum, valuesNum, TotalReadsNum;

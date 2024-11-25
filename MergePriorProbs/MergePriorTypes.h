@@ -5,3 +5,9 @@ typedef struct {
     var binLength;
     var binCount;
 } spline2merge;
+
+typedef struct {
+    float* x;
+    float* y;
+    spline2merge args;
+} probTuple;

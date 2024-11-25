@@ -1,0 +1,12 @@
+Number of bins: 9
+Length of a single bin: 100000
+chr3	4	chr3	5	3
+chr22	8	chr22	7	8
+chr19	1	chr19	7	7
+chr17 	0  	chr17 	8  	14
+chr12	8  	chr12	6  	2
+chr4	5	chr4	1	6
+chr1	7	chr1	4	10
+chr5	3	chr5	2	4
+chr8	6	chr8	0	5
+chr10	0	chr10	3	9
