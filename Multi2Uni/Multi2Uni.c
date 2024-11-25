@@ -89,7 +89,7 @@ for(var k = 0; k < maxIter; k++)
         {
             matrix.Z.sumBinPair[i] += matrix.Pi.SumID[matrix.Z.pairID[j]];
         }
-        matrix.Z.sumBinPair[i] = 1 / matrix.Z.sumBinPair[i]; // RIGHT CALCULATION
+        //matrix.Z.sumBinPair[i] = 1 / matrix.Z.sumBinPair[i]; // RIGHT CALCULATION
     }
 
     // Update Pi

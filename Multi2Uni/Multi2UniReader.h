@@ -37,7 +37,7 @@ CSR readBinsStrings(FILE* multiFile, CSR matrix, DATA data)
         //bin2 >= bin1
         
         matrix.Z.binPairs_ptr[i+1] = matrix.Z.binPairs_ptr[i] + currBinPairLen;
-        matrix.Z.const_to_pi[i] = intraContactsNum * get_spline_prob("0", "0", abs(bin2 - bin1), data) + interContactsNum * data.spline.interProb;
+        matrix.Z.const_to_pi[i] = intraContactsNum + data.nums.TotalReadsNum * get_spline_prob("0", "0", abs(bin2 - bin1), data) + interContactsNum;
     }
 
     return matrix;
