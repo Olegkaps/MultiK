@@ -29,11 +29,10 @@ spline2merge ProcessArgs(spline2merge args) {
         exit(0);
     }
     if(firstBinCount != secondBinCount) {
-        printf("ERROR: files with different bin count.\n");
-        exit(0);
+        printf("WARNING: files with different bin count, using minimum size.\nCheck are it appropriate files and try different bin size.\n");
     }
     args.binLength = firstBinLength;
-    args.binCount = firstBinCount;
+    args.binCount = MIN(firstBinCount, secondBinCount);
 
     return args;
 }

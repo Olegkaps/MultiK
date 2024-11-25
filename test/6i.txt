@@ -1,7 +1,0 @@
-Number of bins: 3
-Length of a single bin: 100000
-chr2	2	chr2	1	7
-chr3	1	chr3	1	9
-chr1	0	chr1	2	6
-chr3 	2  	chr3 	2  	10
-chr4	1  	chr4	0  	5
