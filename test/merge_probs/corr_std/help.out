@@ -1,0 +1,9 @@
+MergePriorProb helper:
+
+-1	--first	REQUIRED: first spline file.
+
+-2	--second	REQUIRED: second spline file.
+
+-o	--output	REQUIRED: output spline file.
+
+-h	--help	show this message
