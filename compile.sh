@@ -1,15 +1,10 @@
-declare -A progs
+#!/bin/bash
 
-progs["DevideUni"]="DevideUni"
-progs["MergePriorProbs"]="MergePriorProbs"
-progs["PriorC"]="PriorC"
-progs["Multi2Uni"]="Multi2Uni"
-
-for dir in DevideUni MergePriorProbs Multi2Uni PriorC; do
-	cd $dir
+for name in DevideUni MergePriorProbs Multi2Uni PriorC; do
+	cd $name
 	./compile.sh
-	cp ${progs[${dir}]} ../exe/
-	mv ${progs[${dir}]} ../test/exe/
+	cp $name ../exe/
+	mv $name ../test/exe/
 	cd ..
 done
 
