@@ -15,4 +15,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build docker container
     - run: docker build --no-cache --progress=plain -t multik ${{ github.workspace }}
+    - name: Run container
     - run: docker run -v ${{ github.workspace }}:/usr/src/multik  multik
