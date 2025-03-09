@@ -1,6 +1,6 @@
 void showHelp(void)
 {
-                fprintf(stdout, "MergePriorProb helper:\n\n");
+                fprintf(stdout, "DevideUniProb helper:\n\n");
                 fprintf(stdout, "-1\t--down\tREQUIRED: output down Uni file.\n\n");
                 fprintf(stdout, "-2\t--up\tREQUIRED: output up Uni file.\n\n");
                 fprintf(stdout, "-i\t--input\tREQUIRED: input Uni file.\n\n");

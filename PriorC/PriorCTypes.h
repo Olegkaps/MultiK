@@ -1,3 +1,5 @@
+#include "hashTable.h"
+
 typedef struct {
     size_t outliersLength;
     var distLowThres;
@@ -31,15 +33,17 @@ typedef struct {
     var noOfBins;
     var noOfFrags;
     char* libName;
+    char* dnaDensityFileName;
+    DNA_chr_bin_hash_table* density_table;
 } priorCArgs;
 
 
 typedef struct {
     var* mainDic;
-    numbers nums;
+    numbers* nums;
 } interactions;
 
 typedef struct {
     var** binStats;
-    numbers nums;
+    numbers* nums;
 } fragReturn;

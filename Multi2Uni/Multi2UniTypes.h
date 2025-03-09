@@ -1,3 +1,6 @@
+#include "../Utils/hashTable.h"
+
+
 typedef struct {
     var* pairID_ptr;
     float* SumID;
@@ -32,6 +35,7 @@ typedef struct {
     char *multiPath;
     char *outputPath;
     char *outdir;
+    char *density;
 } pathesData;
 
 typedef struct {
@@ -40,6 +44,8 @@ typedef struct {
     var valuesNum;
     var TotalReadsNum;
     var readsPosition;
+    float averageDensity;
+    var dnaBinsCount;
 } numbersData;
 
 
@@ -47,5 +53,6 @@ typedef struct {
     splineData spline;
     pathesData pathes;
     numbersData nums;
+    DNA_chr_bin_hash_table* dnas;
 } DATA;
 

@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+#ifndef my_utils_h
+#define my_utils_h
+
 extern void showHelp();
 
 #define xscanf(argsCount, file, string, ...) {\
@@ -67,3 +70,6 @@ void isNullStr(char* filePath)
 #define zeroMem(a,n) 	 {memset(a,0,n*sizeof(*a));}
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
+
+
+#endif

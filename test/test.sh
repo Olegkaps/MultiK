@@ -1,5 +1,5 @@
 
-for dir in "devide_probs" "em" "merge_probs" "prior_probs"; do
+for dir in "devide_probs" "em" "merge_probs" "prior_probs" "create_matrix"; do
 	cd ${dir}
 	rm -f res/*
 	pytest

@@ -25,23 +25,17 @@ int main(int argc, char *argv[]) {
 
     char ch1[100];
     char ch2[100];
-    var bin1, bin2, contactCount;
-    var i = 0;
+    var bin1, bin2, dist, contactCount;
     while(!feof(input)) {
-        xscanf(5, input,"%s\t%u\t%s\t%u\t%u\n", ch1, &bin1, ch2, &bin2, &contactCount);
-        if(bin1 > bin2) {
-            fprintf(up, "%s\t%u\t%s\t%u\t%u\n", ch1, bin1, ch2, bin2, contactCount);
-        } else if(bin1 < bin2) {
-            fprintf(down, "%s\t%u\t%s\t%u\t%u\n", ch1, bin1, ch2, bin2, contactCount);
-        } else {
-            if(i % 2) {
-                fprintf(up, "%s\t%u\t%s\t%u\t%u\n", ch1, bin1, ch2, bin2, contactCount);
-                i++;
-            } else {
-                fprintf(down, "%s\t%u\t%s\t%u\t%u\n", ch1, bin1, ch2, bin2, contactCount);
-                i++;
-            }
-        }
+        xscanf(6, input,"%s\t%u\t%s\t%u\t%u\t%u\n", ch1, &bin1, ch2, &bin2, &dist, &contactCount);
+        if (dist == 0) {
+            fprintf(up, "%s\t%u\t%s\t%u\t%u\t%u\n", ch1, bin1, ch2, bin2, dist, contactCount);
+            fprintf(down, "%s\t%u\t%s\t%u\t%u\t%u\n", ch1, bin1, ch2, bin2, dist, contactCount);
+        } else if(bin1 > bin2) {
+            fprintf(up, "%s\t%u\t%s\t%u\t%u\t%u\n", ch1, bin1, ch2, bin2, dist, contactCount);
+        } else if(bin1 <= bin2) {
+            fprintf(down, "%s\t%u\t%s\t%u\t%u\t%u\n", ch1, bin1, ch2, bin2, dist, contactCount);
+        } 
     }
 
     fclose(input);

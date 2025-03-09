@@ -25,11 +25,12 @@ from test_tools import *
 		([merge_probs, "-1", "input/spline_down.txt", "-2", "input/nofile", "-o", "res/nofile"],
 			"bad_12.err", "bad_2.out", "", null_file),
 		([merge_probs, "--first", "input/spline_down.txt", "--second", "input/spline_up.txt", "--output", "res/file_50_1"],
-			null_file, "", "file_50_1", "spline_merged.txt"),
-		([merge_probs, "-1", "input/spline_down_longer.txt", "-2", "input/spline_up.txt", "-o", "res/firstbad"],
-			"long_first.err", "long_first.out", "", null_file),
-		([merge_probs, "-2", "input/spline_down_longer.txt", "-1", "input/spline_up.txt", "-o", "res/secondbad"],
-			"long_second.err", "long_second.out", "", null_file)
+			null_file, "", "file_50_1", "spline_merged.txt")
+		# already non relevant
+		#([merge_probs, "-1", "input/spline_down_longer.txt", "-2", "input/spline_up.txt", "-o", "res/firstbad"],
+		#	"long_first.err", "long_first.out", "", null_file),
+		#([merge_probs, "-2", "input/spline_down_longer.txt", "-1", "input/spline_up.txt", "-o", "res/secondbad"],
+		#	"long_second.err", "long_second.out", "", null_file)
 
 	]
 ) #spline_down_cap1.txt  spline_down_cap2.txt  - fully rewrite

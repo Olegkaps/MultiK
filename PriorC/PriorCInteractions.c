@@ -14,9 +14,9 @@
 #include "PriorCInteractions.h"
 
 
-var** makeBinsFromInteractions(var** binStats, var* mainDic, var* outliersdist, size_t  outliersdistSize, numbers nums)
+var** makeBinsFromInteractions(var** binStats, var* mainDic, var* outliersdist, size_t  outliersdistSize, numbers* nums)
 {
-    var desiredPerBin = (var)((float)nums.observedIntraInRangeSum / (float)nums.noOfBins);
+    var desiredPerBin = (var)((float)nums->observedIntraInRangeSum / (float)nums->noOfBins);
 
     var interactionTotalForBinTermination = 0;
     var n = 0; // BIN COUNTER SO FAR
@@ -24,9 +24,9 @@ var** makeBinsFromInteractions(var** binStats, var* mainDic, var* outliersdist, 
     var currentBinContactCount = 0;
 
    
-    binStats[0][0] = nums.distLowThres;
+    binStats[0][0] = nums->distLowThres;
 
-    for(var i = 0; i < nums.mainDicSize; i++)
+    for(var i = 0; i < nums->mainDicSize; i++)
     {
         currentBinContactCount += mainDic[i];
         totalInteractionCountSoFar += mainDic[i];
@@ -34,13 +34,13 @@ var** makeBinsFromInteractions(var** binStats, var* mainDic, var* outliersdist, 
         if(interactionTotalForBinTermination >= desiredPerBin)
         {
             interactionTotalForBinTermination = 0;
-            binStats[n][1] = nums.distLowThres + i;
+            binStats[n][1] = nums->distLowThres + i;
             binStats[n][3] = currentBinContactCount;
             n += 1;
             currentBinContactCount = 0;
-            if(n < nums.noOfBins)
+            if(n < nums->noOfBins)
             {
-                desiredPerBin = (float)(nums.observedIntraInRangeSum-totalInteractionCountSoFar) / (float)(nums.noOfBins - n);
+                desiredPerBin = (float)(nums->observedIntraInRangeSum-totalInteractionCountSoFar) / (float)(nums->noOfBins - n);
                 if(desiredPerBin == 0)
                 {
                     break;

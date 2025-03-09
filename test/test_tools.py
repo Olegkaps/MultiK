@@ -3,6 +3,7 @@ import subprocess
 
 progs = "../exe/"
 
+create_matrix = progs + "CreateMatrix"
 devide_probs = progs + "DevideUni"
 prior_probs = progs + "PriorC"
 merge_probs = progs + "MergePriorProbs"

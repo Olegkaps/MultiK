@@ -14,7 +14,7 @@
 #include "spline_connector.h"
 #include "PriorCProbs.h"
 
-fragReturn generate_FragPairs(var** binStats, char* fragsfileName, numbers nums)
+fragReturn generate_FragPairs(var** binStats, char* fragsfileName, numbers* nums)
 {
     fprintf(stdout, "Reading fragments file...\n");
     FILE* fragsfile = xopen(fragsfileName, "r");
@@ -26,10 +26,10 @@ fragReturn generate_FragPairs(var** binStats, char* fragsfileName, numbers nums)
 
     var possibleIntraInRangeCountPerChr;    
     var possibleIntraAllCount = 0;
-    nums.possibleInterAllCount = 0;
-    nums.possibleIntraInRangeCount = 0;
-    nums.interChrProb = 0.0;
-    nums.baselineIntraChrProb = 0.0;
+    nums->possibleInterAllCount = 0;
+    nums->possibleIntraInRangeCount = 0;
+    nums->interChrProb = 0.0;
+    nums->baselineIntraChrProb = 0.0;
 
 
     char chrName[10];
@@ -41,29 +41,29 @@ fragReturn generate_FragPairs(var** binStats, char* fragsfileName, numbers nums)
     //###########################
     //mapsThres not accounted for
     //###########################
-    if(nums.binLength != 0)
+    if(nums->binLength != 0)
     {
         //xscanf(1, fragsfile, "Number of fragments: %u\n", &nums.noOfFrags);                                                                            
         while(!feof(fragsfile))                                                 
         {                                                                       
             xscanf(2, fragsfile, "%s\t%u\n", chrName, &chrLength);                    
-            chrLength /= nums.binLength;                                                
-            nums.possibleInterAllCount += chrLength * (nums.noOfFrags - chrLength);        
+            chrLength /= nums->binLength;                                                
+            nums->possibleInterAllCount += chrLength * (nums->noOfFrags - chrLength);   
             possibleIntraAllCount += (chrLength * (chrLength + 1)) / 2;          
-            for(var i = 0; i < nums.noOfBins; i++)                                   
+            for(var i = 0; i < nums->noOfBins; i++)                                   
             {
                 if(binStats[i][3] == 0)                                          
                 {                                                                
-                    nums.noOfBins = i;                                            
+                    nums->noOfBins = i;                                            
                     break;                                                       
                 }                                                                
                 for(var intxnDistance = binStats[i][0]; intxnDistance <= binStats[i][1]; intxnDistance++)
                 {
-                    if (intxnDistance < nums.distLowThres)
+                    if (intxnDistance < nums->distLowThres)
                     {
                         continue;
                     }
-                    if (intxnDistance > nums.distUpThres || intxnDistance > chrLength)
+                    if (intxnDistance > nums->distUpThres || intxnDistance > chrLength)
                     {
                         break;
                     }
@@ -74,11 +74,11 @@ fragReturn generate_FragPairs(var** binStats, char* fragsfileName, numbers nums)
                 }
 
             }
-            nums.possibleIntraInRangeCount += possibleIntraInRangeCountPerChr;
+            nums->possibleIntraInRangeCount += possibleIntraInRangeCountPerChr;
             possibleIntraInRangeCountPerChr = 0;
         }
-        nums.interChrProb = ((nums.possibleInterAllCount != 0) ? (1.0 / nums.possibleInterAllCount) : 0);
-        nums.baselineIntraChrProb = 1.0 / possibleIntraAllCount;
+        nums->interChrProb = ((nums->possibleInterAllCount != 0) ? (1.0 / nums->possibleInterAllCount) : 0);
+        nums->baselineIntraChrProb = 1.0 / possibleIntraAllCount;
     } //TO DO: else
     
     end = clock();
@@ -95,19 +95,19 @@ fragReturn generate_FragPairs(var** binStats, char* fragsfileName, numbers nums)
 } 
 
 
-double** calculateProbabilities(double** probTuple, var* mainDic, var** binStats, numbers nums)
+double** calculateProbabilities(double** probTuple, var* mainDic, var** binStats, numbers* nums)
 {
     double* x = probTuple[0];
     double* y = probTuple[1];
   
     var sumCC, sumDistB4Scaling, possPairsInRange;
     double avgCC, avgDist;  
-    for(var i = 0; i < nums.noOfBins; i++)
+    for(var i = 0; i < nums->noOfBins; i++)
     {
         possPairsInRange = binStats[i][2];
         sumCC = binStats[i][3];
         sumDistB4Scaling = binStats[i][4];
-        avgCC = ((double)sumCC/possPairsInRange)/nums.observedIntraInRangeSum;
+        avgCC = ((double)sumCC/possPairsInRange)/nums->observedIntraInRangeSum;
         avgDist = (((double)sumDistB4Scaling)/possPairsInRange);
         //avgDist *= distScaling
         y[i] = avgCC;
@@ -119,7 +119,7 @@ double** calculateProbabilities(double** probTuple, var* mainDic, var** binStats
 
 
 
-double** fit_Spline(var* mainDic, double* x, double* y, var passNo, numbers nums)
+double** fit_Spline(var* mainDic, double* x, double* y, var passNo, numbers* nums)
 {
     fprintf(stdout, "Spline fit Pass %u starting...\n", passNo);
     clock_t start, end;
@@ -129,13 +129,13 @@ double** fit_Spline(var* mainDic, double* x, double* y, var passNo, numbers nums
     var k = 3;
     var i, j;
     double w = INFINITY;
-    for(int i = 0; i < nums.noOfBins; i++) {
+    for(int i = 0; i < nums->noOfBins; i++) {
        if(y[i] < w) {
           w = y[i];
        }
     }
 
-    SmoothingSpline(x, y, 50, w*w);
+    SmoothingSpline(x, y, nums->noOfBins, w*w);
     
 
     

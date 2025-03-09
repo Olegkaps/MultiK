@@ -23,7 +23,7 @@ void SmoothingSpline(double* x, double* y, unsigned int N, double w)
 	y_new.setcontent(N, y);
 
 
-        spline1dfit(x_new, y_new, 50, w, s, rep);
+        spline1dfit(x_new, y_new, N, w, s, rep);
 
         for(int i = 0; i < N; i++) {
                 y[i] = spline1dcalc(s, x[i]);
