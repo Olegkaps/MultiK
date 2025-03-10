@@ -1,5 +1,7 @@
 import sys
-sys.path.append("../")
+import os
+
+sys.path.append(os.getcwd() + "/../")
 from test_tools import *
 
 

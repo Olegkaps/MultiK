@@ -1,7 +1,8 @@
 import pytest
 import sys
+import os
 
-sys.path.append("../")
+sys.path.append(os.getcwd() + "/../")
 from test_tools import *
 
 
